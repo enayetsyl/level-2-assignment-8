@@ -4,7 +4,7 @@ import sendResponse from "../../shared/sendResponse"
 import { MemberService } from "./member.service"
 
 
-
+// Controller function for creating a member
 const createAMember = catchAsync( async(req: Request, res: Response) =>{
   const result = await MemberService.createAMember(req.body)
 
@@ -17,6 +17,7 @@ sendResponse(res, {
 })
 })
 
+// Controller function for getting all members
 const getAllMembers = catchAsync(async(req:Request, res: Response) =>{
   const result = await MemberService.getAllMembers()
 
@@ -29,6 +30,9 @@ const getAllMembers = catchAsync(async(req:Request, res: Response) =>{
   })
   
 })
+
+
+// Controller function for getting a member
 const getMemberById = catchAsync(async(req:Request, res: Response) =>{
   const result = await MemberService.getMemberById(req.params.id)
 
@@ -40,6 +44,8 @@ const getMemberById = catchAsync(async(req:Request, res: Response) =>{
     data: result
   })
 })
+
+// Controller function for updating a member
 const updateAMember = catchAsync(async(req:Request, res: Response) =>{
   const result = await MemberService.updateAMember(req.params.id, req.body)
 
@@ -51,6 +57,8 @@ const updateAMember = catchAsync(async(req:Request, res: Response) =>{
     data: result
   })
 })
+
+// Controller function for deleting a member
 const deleteAMember = catchAsync(async(req:Request, res: Response) =>{
   await MemberService.deleteAMember(req.params.id);
 

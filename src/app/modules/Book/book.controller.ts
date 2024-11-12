@@ -1,10 +1,10 @@
-import { Request, Response, NextFunction } from "express"
+import { Request, Response} from "express"
 import catchAsync from "../../shared/catchAsync"
 import sendResponse from "../../shared/sendResponse"
 import { BookService } from "./book.service"
-import { setDefaultAutoSelectFamily } from "net"
 
 
+// Controller for creating a book into db
 const createABook = catchAsync( async(req: Request, res: Response) =>{
   const result = await BookService.createABook(req.body)
 
@@ -17,6 +17,7 @@ sendResponse(res, {
 })
 })
 
+// Controller for getting all books from db
 const getAllBooks = catchAsync(async(req:Request, res: Response) =>{
   const result = await BookService.getAllBooks()
 
@@ -29,6 +30,8 @@ const getAllBooks = catchAsync(async(req:Request, res: Response) =>{
   })
   
 })
+
+// Controller for getting a book from db
 const getBookById = catchAsync(async(req:Request, res: Response) =>{
   const result = await BookService.getBookById(req.params.id)
 
@@ -40,6 +43,9 @@ const getBookById = catchAsync(async(req:Request, res: Response) =>{
     data: result
   })
 })
+
+
+// Controller for updating a book into db
 const updateABook = catchAsync(async(req:Request, res: Response) =>{
   const result = await BookService.updateABook(req.params.id, req.body)
 
@@ -51,6 +57,8 @@ const updateABook = catchAsync(async(req:Request, res: Response) =>{
     data: result
   })
 })
+
+// Controller for deleting a book from db
 const deleteABook = catchAsync(async(req:Request, res: Response) =>{
   await BookService.deleteABook(req.params.id);
 

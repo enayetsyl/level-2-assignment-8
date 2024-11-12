@@ -3,6 +3,7 @@ import { MemberController } from './member.controller';
 
 const router = express.Router()
 
+// route for members
 router.post('/', MemberController.createAMember);
 
 router.get("/", MemberController.getAllMembers);

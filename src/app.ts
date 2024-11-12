@@ -8,11 +8,14 @@ import router from './app/routes';
 
 const app: Application = express();
 
+// middleware
 app.use(cors())
 app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+
+// routes
 app.get('/', (req, res) => {
   console.log('get route hit')
   res.send('Hello World!')
@@ -20,22 +23,12 @@ app.get('/', (req, res) => {
 
 app.use("/api", router)
 
-app.post("/api/books", async (req, res) => {
-  try {
-      const data = req.body;
-    const res =  await prisma.book.create({data:data})
-    console.log('res', res)
-  } catch (error) {
-    
-  }
-})
 
-
-
-// app.use("/api/v1", router)
-
+// Global error handler
 app.use(globalErrorHandler)
 
+
+// Not found route
 app.use((req: Request, res: Response, next: NextFunction)=>{
   res.status(404).json({
     success: false,

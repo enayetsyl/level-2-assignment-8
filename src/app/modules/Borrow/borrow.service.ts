@@ -1,24 +1,25 @@
 import prisma from "../../shared/prisma"
 
 
-
+// Service function for borrowing a book
 const borrowABook = async (data: { bookId: string, memberId: string}) =>{
-  console.log('bookid, member id', data)
   const result =  await prisma.borrowRecord.create({data:
     {
       ...data, 
       borrowDate: new Date(),
-      
     }
   })
-  
   return result;
 }
 
+// Service function for getting overdue book list
+
 const overdueBookList = async () => {
+  // Calculating 14 days earlier than today
   const fourteenDaysAgo = new Date();
   fourteenDaysAgo.setDate(fourteenDaysAgo.getDate() - 14);
 
+  // Based on 14 days overdue limit find out the book list and populating book title and member name who borrowed the book
   const overdueBooks = await prisma.borrowRecord.findMany({
     where: {
       returnDate: null,
@@ -29,12 +30,12 @@ const overdueBookList = async () => {
     include: {
       book: {
         select: {
-          title: true, // Fetch the book title
+          title: true, 
         },
       },
       member: {
         select: {
-          name: true, // Fetch the member name
+          name: true, 
         },
       },
     },

@@ -4,7 +4,7 @@ import sendResponse from "../../shared/sendResponse"
 import { BorrowService } from "./borrow.service"
 
 
-
+// Controller function for borrowing a book
 const borrowABook = catchAsync( async(req: Request, res: Response) =>{
   const result = await BorrowService.borrowABook(req.body)
 
@@ -17,8 +17,9 @@ sendResponse(res, {
 })
 })
 
+// Controller for getiing overdue book list
 const overdueBookList = catchAsync(async(req:Request, res: Response)=>{
-  console.log('route hit')
+  
   const result = await BorrowService.overdueBookList()
 
   sendResponse(res, {

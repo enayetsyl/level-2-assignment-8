@@ -1,5 +1,6 @@
 import { Response } from "express"
-import { json } from "stream/consumers"
+
+// Reuseable send response function
 
 const sendResponse = <T>(res: Response, jsonData: {
   statusCode: number,

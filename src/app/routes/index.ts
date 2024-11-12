@@ -7,6 +7,7 @@ import { ReturnRoutes } from "../modules/Return/return.route"
 
 const router = express.Router()
 
+// Storing all the routes
 
 const moduleRoutes = [
   {
@@ -26,6 +27,8 @@ const moduleRoutes = [
     route: ReturnRoutes
   }
 ]
+
+// creating all routes
 
 moduleRoutes.forEach(route => router.use(route.path, route.route))
 

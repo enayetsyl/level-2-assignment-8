@@ -1,5 +1,7 @@
 import prisma from "../../shared/prisma"
 
+// Service function for returning a book
+
 const returnABook = async (id : string) =>{
   console.log(id)
   const isRecordExist = await prisma.borrowRecord.findUnique({

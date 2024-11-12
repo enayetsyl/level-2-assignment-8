@@ -1,5 +1,5 @@
 
-
+// Interface for book
 export interface IBook {
   title: string,
   genre: string,

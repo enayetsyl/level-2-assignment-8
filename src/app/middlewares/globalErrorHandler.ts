@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 
-
+// Global error handler for sending custom return and message
 const globalErrorHandler = (err: any, req: Request, res: Response, next: NextFunction ) => {
   res.status(500).json({
     success: false,
